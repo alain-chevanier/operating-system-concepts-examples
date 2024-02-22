@@ -1,0 +1,31 @@
+{
+  "email": "email@veem.com",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "countryCode": "CA",
+  "phone": "646-578-0322",
+  "type": "type",
+  "businessName": "business name",
+  "business": {
+    "address": {
+      "countryCode": "CA",
+      "street": "Fake Avenue 1",
+      "city": "San Francisco",
+      "postalCode": "91710",
+      "province": "ON"
+    },
+    "entity": "Corporation",
+    "taxIdNumber": "XAXX010101000"
+  },
+  "bank": {
+    "countryCode": "CA",
+    "bankName": "Access Credit Union",
+    "currencyCode": "CAD",
+    "bankAccountNumber": "1234567",
+    "transitCode": "04841",
+    "swiftBic": "CUCXCATT",
+    "bankInstitutionNumber": "879",
+    "bic": "CUCXCATT"
+  },
+  "platformAccounts": []
+}
