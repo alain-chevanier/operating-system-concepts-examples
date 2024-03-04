@@ -10,7 +10,6 @@
  * Copyright John Wiley & Sons - 2013
  */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,6 +17,7 @@
 #include <sys/shm.h>
 #include <sys/stat.h>
 #include <sys/mman.h>
+#include <unistd.h>
 
 int main()
 {
@@ -48,12 +48,12 @@ int main()
  	 *
 	 * Note we must increment the value of ptr after each write.
 	 */
-	sprintf(ptr,"%s",message0);
-	ptr += strlen(message0);
-	sprintf(ptr,"%s",message1);
-	ptr += strlen(message1);
-	sprintf(ptr,"%s",message2);
-	ptr += strlen(message2);
+	sprintf (ptr, "%s", message0);
+	ptr += strlen (message0);
+	sprintf (ptr, "%s", message1);
+	ptr += strlen (message1);
+	sprintf (ptr, "%s", message2);
+	ptr += strlen (message2);
 
 	return 0;
 }
