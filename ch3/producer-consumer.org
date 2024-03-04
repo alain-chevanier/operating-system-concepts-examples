@@ -1,0 +1,58 @@
+#+title: Producer Consumer
+
+* Bounded Buffer Example
+
+We have the following structure for a /buffer/ of size ~BUFFER_SIZE~, we can only use ~BUFFER_SIZE - 1~ elements from the buffer.
+
+** bounded-buffer.h
+#+begin_src c
+#define BUFFER_SIZE 10 // 10 is just an example it can be whatever positive number we want
+
+struct item
+{
+  void* pointer_to_value;
+  size_t value_size;
+};
+
+struct bounded_buffer
+{
+  struct item buffer[BUFFER_SIZE];
+  int in = 0; // next possition where we can produce an element
+  int out = 0; // next position where we can consume an element
+
+};
+
+void bb_produce (struct bounded_buffer* bb, struct item item);
+struct item bb_consume (struct bounded_buffer* bb);
+bool bb_is_empty (struct bounded_buffer* bb);
+bool bb_is_full (struct bounded_buffer* bb);
+#+end_src
+
+** bounded-buffer.c
+
+#+begin_src c
+bool bb_is_empty (struct bounded_buffer* bb)
+  {
+    return (bb->in == bb->out);
+  }
+
+bool bb_is_full (struct bounded_buffer* bb)
+  {
+    return (((bb->in + 1) + BUFFER_SIZE) == bb->out);
+  }
+
+void bb_produce (struct bounded_buffer* bb, struct item item)
+  {
+    while (bb_is_full (bb)); // spin
+    bb->buffer[bb->in] = item;
+    bb->in++;
+  }
+
+struct item bb_consume (struct bounded_buffer* bb)
+  {
+    while (bb_is_empty (bb)); // spin
+    struct item next_to_consume = bb->buffer[bb->out];
+    bb->out++;
+    return next_to_consume;
+  }
+#+end_src
